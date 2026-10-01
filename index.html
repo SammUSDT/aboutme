@@ -278,6 +278,41 @@
             line-height: 1.6;
         }
 
+        /* SERTIFIKAT */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .cert-item {
+            display: block;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .cert-item:hover {
+            border-color: rgba(168, 85, 247, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.2);
+        }
+
+        .cert-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .cert-item:hover img {
+            transform: scale(1.05);
+        }
+
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -341,7 +376,6 @@
             color: var(--accent);
         }
 
-        /* START OVERLAY */
         .start-overlay {
             position: fixed;
             top: 0;
@@ -478,6 +512,25 @@
         </div>
     </div>
 
+    <!-- SERTIFIKAT -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-certificate"></i> Sertifikat & Penghargaan</div>
+        <div class="cert-grid">
+            <a href="https://files.catbox.moe/wejphc.png" target="_blank" class="cert-item">
+                <img src="https://files.catbox.moe/wejphc.png" alt="Sertifikat 1">
+            </a>
+            <a href="https://files.catbox.moe/zarine.png" target="_blank" class="cert-item">
+                <img src="https://files.catbox.moe/zarine.png" alt="Sertifikat 2">
+            </a>
+            <a href="https://files.catbox.moe/l0odo7.png" target="_blank" class="cert-item">
+                <img src="https://files.catbox.moe/l0odo7.png" alt="Sertifikat 3">
+            </a>
+            <a href="https://files.catbox.moe/9zar7b.png" target="_blank" class="cert-item">
+                <img src="https://files.catbox.moe/9zar7b.png" alt="Sertifikat 4">
+            </a>
+        </div>
+    </div>
+
     <div class="section">
         <div class="section-title"><i class="fas fa-clock-rotate-left"></i> Timeline</div>
         <div class="timeline">
@@ -539,7 +592,6 @@
     const bgMusic = document.getElementById('bgMusic');
     const startOverlay = document.getElementById('startOverlay');
 
-    // Volume kecil (0.3 = 30%)
     bgMusic.volume = 0.3;
 
     startOverlay.addEventListener('click', () => {
