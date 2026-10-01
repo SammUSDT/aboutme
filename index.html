@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SammUSDT — Man Of God</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #08080c;
+            --card: rgba(18, 18, 28, 0.75);
+            --accent: #a855f7;
+            --accent2: #6366f1;
+            --text: #e0e0e0;
+            --muted: rgba(255, 255, 255, 0.4);
+            --border: rgba(255, 255, 255, 0.06);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.12), transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08), transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 20px 0 40px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .hero .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 2px solid rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+            margin-bottom: 14px;
+            transition: transform 0.3s;
+        }
+
+        .hero .logo:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .hero .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
+            margin-bottom: 18px;
+            transition: transform 0.3s;
+        }
+
+        .hero .avatar:hover {
+            transform: scale(1.05) rotate(-3deg);
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 34px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1.5px;
+        }
+
+        .hero .tagline {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero .tagline i {
+            color: var(--accent);
+            margin-right: 6px;
+        }
+
+        /* SECTION */
+        .section {
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 26px 22px;
+            margin-bottom: 20px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            font-size: 16px;
+        }
+
+        .section p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 12px;
+        }
+
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* SKILLS */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .skill-item {
+            background: rgba(168, 85, 247, 0.06);
+            border: 1px solid rgba(168, 85, 247, 0.12);
+            border-radius: 14px;
+            padding: 12px 14px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .skill-item:hover {
+            background: rgba(168, 85, 247, 0.12);
+            border-color: rgba(168, 85, 247, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .skill-item i {
+            display: block;
+            font-size: 20px;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        /* PROJECTS */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .project-item {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.12);
+            border-radius: 16px;
+            padding: 16px;
+            transition: all 0.2s;
+        }
+
+        .project-item:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .project-item .name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .project-item .desc {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #a855f7, #6366f1, transparent);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 24px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--bg);
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+        }
+
+        .timeline-item .year {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item .desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        /* CONTACT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 12px 14px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+
+        .contact-item:hover {
+            background: rgba(168, 85, 247, 0.08);
+            border-color: rgba(168, 85, 247, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .contact-item .ico {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(168, 85, 247, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .contact-item .info .label {
+            font-size: 10px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item .info .value {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 30px 0 10px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.15);
+            letter-spacing: 0.5px;
+        }
+
+        .footer i {
+            color: var(--accent);
+        }
+
+        /* MUSIC BUTTON */
+        .music-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+            z-index: 999;
+            transition: all 0.2s;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 35px rgba(168, 85, 247, 0.6);
+        }
+
+        .music-btn.muted {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: none;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .wrapper { padding: 30px 16px 50px; }
+            .hero h1 { font-size: 26px; }
+            .hero .avatar { width: 100px; height: 100px; }
+            .section { padding: 20px 16px; border-radius: 24px; }
+            .section-title { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+<audio id="bgMusic" src="https://files.catbox.moe/cpfdki.mp3" loop></audio>
+
+<button class="music-btn" id="musicBtn" title="Toggle Music">
+    <i class="fas fa-volume-up" id="musicIcon"></i>
+</button>
+
+<div class="wrapper">
+    <!-- HERO -->
+    <div class="hero">
+        <img class="logo" src="https://files.catbox.moe/au54vk.jpg" alt="Logo SammUSDT">
+        <br>
+        <img class="avatar" src="https://files.catbox.moe/vkycme.jpg" alt="SammUSDT">
+        <h1>SammUSDT</h1>
+        <div class="tagline"><i class="fas fa-dove"></i> Man Of God</div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-user"></i> Perkenalan</div>
+        <p>Yo, nama gw <b>SammUSDT</b>. Gw pernah berkecimpung di dunia JB, coding, hacking, doxing, build website, coding JavaScript dan berbagai hal seputar teknologi. Gw suka explore hal-hal baru, belajar dari pengalaman.</p>
+        <p>Menurut gw, gw tertarik ke dunia teknologi/JB jadi gw bermula ke Telegram dan belajar di situ tentang hacking, doxing, dan coding.</p>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-code"></i> Skill & Tools</div>
+        <div class="skill-grid">
+            <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
+            <div class="skill-item"><i class="fab fa-html5"></i> HTML/CSS</div>
+            <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
+            <div class="skill-item"><i class="fas fa-cloud"></i> Vercel</div>
+            <div class="skill-item"><i class="fas fa-dragon"></i> Pterodactyl</div>
+            <div class="skill-item"><i class="fab fa-linux"></i> Linux</div>
+        </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-folder-open"></i> Proyek Karya</div>
+        <div class="project-grid">
+            <div class="project-item">
+                <div class="name">NXT CORE</div>
+                <div class="desc">Panel bug sender + dashboard interaktif</div>
+            </div>
+            <div class="project-item">
+                <div class="name">Silent-X</div>
+                <div class="desc">Jailbreak prompt untuk berbagai AI</div>
+            </div>
+            <div class="project-item">
+                <div class="name">Simulasi Saham</div>
+                <div class="desc">Website trading dengan grafik live</div>
+            </div>
+            <div class="project-item">
+                <div class="name">TwiSex</div>
+                <div class="desc">Album musik digital</div>
+            </div>
+            <div class="project-item">
+                <div class="name">Web2App Projects</div>
+                <div class="desc">Konversi website jadi aplikasi</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-clock-rotate-left"></i> Timeline</div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="year">2025</div>
+                <div class="desc">Belajar Coding, Hacking, Doxing, build Jailbreak prompt</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2026</div>
+                <div class="desc">Belajar build website, dan lain-lain</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">Pencapaian</div>
+                <div class="desc">Tidak ada pencapaian — masih terus belajar</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="section">
+        <div class="section-title"><i class="fas fa-address-book"></i> Contact & Social</div>
+        <div class="contact-grid">
+            <a href="https://t.me/ZetsuTheDev" target="_blank" class="contact-item">
+                <div class="ico"><i class="fab fa-telegram"></i></div>
+                <div class="info">
+                    <div class="label">Telegram</div>
+                    <div class="value">@ZetsuTheDev</div>
+                </div>
+            </a>
+            <a href="https://github.com/SammUSDT" target="_blank" class="contact-item">
+                <div class="ico"><i class="fab fa-github"></i></div>
+                <div class="info">
+                    <div class="label">GitHub</div>
+                    <div class="value">@SammUSDT</div>
+                </div>
+            </a>
+            <a href="https://www.tiktok.com/@SammUSDT" target="_blank" class="contact-item">
+                <div class="ico"><i class="fab fa-tiktok"></i></div>
+                <div class="info">
+                    <div class="label">TikTok</div>
+                    <div class="value">@SammUSDT</div>
+                </div>
+            </a>
+            <a href="https://whatsapp.com/channel/0029VbC4cCJ5fM5jj5yH4v1L" target="_blank" class="contact-item">
+                <div class="ico"><i class="fab fa-whatsapp"></i></div>
+                <div class="info">
+                    <div class="label">Channel</div>
+                    <div class="value">WhatsApp Channel</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <i class="fas fa-dove"></i> SammUSDT — Man Of God © 2025
+    </div>
+</div>
+
+<script>
+    const bgMusic = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    const musicIcon = document.getElementById('musicIcon');
+
+    bgMusic.volume = 0.6;
+
+    function tryPlayMusic() {
+        bgMusic.play().then(() => {
+            musicIcon.className = 'fas fa-volume-up';
+            musicBtn.classList.remove('muted');
+        }).catch(() => {
+            musicIcon.className = 'fas fa-volume-mute';
+            musicBtn.classList.add('muted');
+        });
+    }
+
+    // Coba autoplay saat halaman dimuat
+    tryPlayMusic();
+
+    // Kalau diblokir, mulai saat user interaksi pertama
+    function startOnInteract() {
+        if (bgMusic.paused) {
+            bgMusic.play().then(() => {
+                musicIcon.className = 'fas fa-volume-up';
+                musicBtn.classList.remove('muted');
+            }).catch(() => {});
+        }
+        document.removeEventListener('click', startOnInteract);
+        document.removeEventListener('touchstart', startOnInteract);
+    }
+
+    document.addEventListener('click', startOnInteract);
+    document.addEventListener('touchstart', startOnInteract);
+
+    // Toggle musik
+    musicBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (bgMusic.paused) {
+            bgMusic.play().then(() => {
+                musicIcon.className = 'fas fa-volume-up';
+                musicBtn.classList.remove('muted');
+            }).catch(() => {});
+        } else {
+            bgMusic.pause();
+            musicIcon.className = 'fas fa-volume-mute';
+            musicBtn.classList.add('muted');
+        }
+    });
+</script>
+</body>
+</html>
