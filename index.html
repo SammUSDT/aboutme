@@ -64,7 +64,6 @@
             padding: 40px 20px 60px;
         }
 
-        /* HERO */
         .hero {
             text-align: center;
             padding: 20px 0 40px;
@@ -125,7 +124,6 @@
             margin-right: 6px;
         }
 
-        /* SECTION */
         .section {
             background: var(--card);
             backdrop-filter: blur(20px);
@@ -164,7 +162,6 @@
             margin-bottom: 0;
         }
 
-        /* SKILLS */
         .skill-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -195,7 +192,6 @@
             margin-bottom: 6px;
         }
 
-        /* PROJECTS */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -229,7 +225,6 @@
             line-height: 1.5;
         }
 
-        /* TIMELINE */
         .timeline {
             position: relative;
             padding-left: 30px;
@@ -283,7 +278,6 @@
             line-height: 1.6;
         }
 
-        /* CONTACT */
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -335,7 +329,6 @@
             color: #fff;
         }
 
-        /* FOOTER */
         .footer {
             text-align: center;
             padding: 30px 0 10px;
@@ -346,38 +339,6 @@
 
         .footer i {
             color: var(--accent);
-        }
-
-        /* MUSIC BUTTON */
-        .music-btn {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #a855f7, #6366f1);
-            border: none;
-            color: #fff;
-            font-size: 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
-            z-index: 999;
-            transition: all 0.2s;
-        }
-
-        .music-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 35px rgba(168, 85, 247, 0.6);
-        }
-
-        .music-btn.muted {
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: none;
-            color: rgba(255, 255, 255, 0.4);
         }
 
         @keyframes fadeIn {
@@ -396,14 +357,9 @@
 </head>
 <body>
 
-<audio id="bgMusic" src="https://files.catbox.moe/cpfdki.mp3" loop></audio>
-
-<button class="music-btn" id="musicBtn" title="Toggle Music">
-    <i class="fas fa-volume-up" id="musicIcon"></i>
-</button>
+<audio id="bgMusic" src="https://files.catbox.moe/j78e0l.mp3" loop autoplay></audio>
 
 <div class="wrapper">
-    <!-- HERO -->
     <div class="hero">
         <img class="logo" src="https://files.catbox.moe/au54vk.jpg" alt="Logo SammUSDT">
         <br>
@@ -412,14 +368,12 @@
         <div class="tagline"><i class="fas fa-dove"></i> Man Of God</div>
     </div>
 
-    <!-- ABOUT -->
     <div class="section">
         <div class="section-title"><i class="fas fa-user"></i> Perkenalan</div>
         <p>Yo, nama gw <b>SammUSDT</b>. Gw pernah berkecimpung di dunia JB, coding, hacking, doxing, build website, coding JavaScript dan berbagai hal seputar teknologi. Gw suka explore hal-hal baru, belajar dari pengalaman.</p>
         <p>Menurut gw, gw tertarik ke dunia teknologi/JB jadi gw bermula ke Telegram dan belajar di situ tentang hacking, doxing, dan coding.</p>
     </div>
 
-    <!-- SKILLS -->
     <div class="section">
         <div class="section-title"><i class="fas fa-code"></i> Skill & Tools</div>
         <div class="skill-grid">
@@ -432,7 +386,6 @@
         </div>
     </div>
 
-    <!-- PROJECTS -->
     <div class="section">
         <div class="section-title"><i class="fas fa-folder-open"></i> Proyek Karya</div>
         <div class="project-grid">
@@ -459,7 +412,6 @@
         </div>
     </div>
 
-    <!-- TIMELINE -->
     <div class="section">
         <div class="section-title"><i class="fas fa-clock-rotate-left"></i> Timeline</div>
         <div class="timeline">
@@ -478,7 +430,6 @@
         </div>
     </div>
 
-    <!-- CONTACT -->
     <div class="section">
         <div class="section-title"><i class="fas fa-address-book"></i> Contact & Social</div>
         <div class="contact-grid">
@@ -513,7 +464,6 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
     <div class="footer">
         <i class="fas fa-dove"></i> SammUSDT — Man Of God © 2025
     </div>
@@ -521,52 +471,19 @@
 
 <script>
     const bgMusic = document.getElementById('bgMusic');
-    const musicBtn = document.getElementById('musicBtn');
-    const musicIcon = document.getElementById('musicIcon');
+    bgMusic.volume = 1.0;
 
-    bgMusic.volume = 0.6;
-
-    function tryPlayMusic() {
-        bgMusic.play().then(() => {
-            musicIcon.className = 'fas fa-volume-up';
-            musicBtn.classList.remove('muted');
-        }).catch(() => {
-            musicIcon.className = 'fas fa-volume-mute';
-            musicBtn.classList.add('muted');
-        });
+    function playMusic() {
+        bgMusic.play().catch(() => {});
     }
 
-    // Coba autoplay saat halaman dimuat
-    tryPlayMusic();
+    window.addEventListener('load', playMusic);
 
-    // Kalau diblokir, mulai saat user interaksi pertama
-    function startOnInteract() {
-        if (bgMusic.paused) {
-            bgMusic.play().then(() => {
-                musicIcon.className = 'fas fa-volume-up';
-                musicBtn.classList.remove('muted');
-            }).catch(() => {});
-        }
-        document.removeEventListener('click', startOnInteract);
-        document.removeEventListener('touchstart', startOnInteract);
-    }
-
-    document.addEventListener('click', startOnInteract);
-    document.addEventListener('touchstart', startOnInteract);
-
-    // Toggle musik
-    musicBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (bgMusic.paused) {
-            bgMusic.play().then(() => {
-                musicIcon.className = 'fas fa-volume-up';
-                musicBtn.classList.remove('muted');
-            }).catch(() => {});
-        } else {
-            bgMusic.pause();
-            musicIcon.className = 'fas fa-volume-mute';
-            musicBtn.classList.add('muted');
-        }
+    ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
+        document.addEventListener(evt, function once() {
+            playMusic();
+            document.removeEventListener(evt, once);
+        }, { once: true });
     });
 </script>
 </body>
