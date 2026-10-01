@@ -341,6 +341,62 @@
             color: var(--accent);
         }
 
+        /* OVERLAY TAP TO START */
+        .start-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #08080c;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+        }
+
+        .start-overlay.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .start-overlay .icon-circle {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 44px;
+            color: #fff;
+            box-shadow: 0 0 50px rgba(168, 85, 247, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 50px rgba(168, 85, 247, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 70px rgba(168, 85, 247, 0.8); }
+        }
+
+        .start-overlay h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        .start-overlay p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -352,12 +408,23 @@
             .hero .avatar { width: 100px; height: 100px; }
             .section { padding: 20px 16px; border-radius: 24px; }
             .section-title { font-size: 13px; }
+            .start-overlay .icon-circle { width: 90px; height: 90px; font-size: 36px; }
+            .start-overlay h2 { font-size: 18px; }
         }
     </style>
 </head>
 <body>
 
-<audio id="bgMusic" src="https://files.catbox.moe/j78e0l.mp3" loop autoplay></audio>
+<audio id="bgMusic" src="https://files.catbox.moe/j78e0l.mp3" loop></audio>
+
+<!-- OVERLAY TAP TO START -->
+<div class="start-overlay" id="startOverlay">
+    <div class="icon-circle">
+        <i class="fas fa-music"></i>
+    </div>
+    <h2>TAP TO ENTER</h2>
+    <p>SammUSDT — Man Of God</p>
+</div>
 
 <div class="wrapper">
     <div class="hero">
@@ -471,20 +538,25 @@
 
 <script>
     const bgMusic = document.getElementById('bgMusic');
+    const startOverlay = document.getElementById('startOverlay');
     bgMusic.volume = 1.0;
 
-    function playMusic() {
-        bgMusic.play().catch(() => {});
-    }
-
-    window.addEventListener('load', playMusic);
-
-    ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
-        document.addEventListener(evt, function once() {
-            playMusic();
-            document.removeEventListener(evt, once);
-        }, { once: true });
+    startOverlay.addEventListener('click', () => {
+        bgMusic.play().then(() => {
+            startOverlay.classList.add('hide');
+        }).catch(() => {
+            startOverlay.classList.add('hide');
+        });
     });
+
+    // Kalo user tap di mana aja duluan, tutup overlay juga
+    document.addEventListener('click', function once(e) {
+        if (!startOverlay.classList.contains('hide')) {
+            bgMusic.play().catch(() => {});
+            startOverlay.classList.add('hide');
+        }
+        document.removeEventListener('click', once);
+    }, { once: true });
 </script>
 </body>
 </html>
