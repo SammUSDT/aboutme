@@ -341,7 +341,7 @@
             color: var(--accent);
         }
 
-        /* OVERLAY TAP TO START */
+        /* START OVERLAY */
         .start-overlay {
             position: fixed;
             top: 0;
@@ -417,7 +417,6 @@
 
 <audio id="bgMusic" src="https://files.catbox.moe/j78e0l.mp3" loop></audio>
 
-<!-- OVERLAY TAP TO START -->
 <div class="start-overlay" id="startOverlay">
     <div class="icon-circle">
         <i class="fas fa-music"></i>
@@ -539,7 +538,9 @@
 <script>
     const bgMusic = document.getElementById('bgMusic');
     const startOverlay = document.getElementById('startOverlay');
-    bgMusic.volume = 1.0;
+
+    // Volume kecil (0.3 = 30%)
+    bgMusic.volume = 0.3;
 
     startOverlay.addEventListener('click', () => {
         bgMusic.play().then(() => {
@@ -549,7 +550,6 @@
         });
     });
 
-    // Kalo user tap di mana aja duluan, tutup overlay juga
     document.addEventListener('click', function once(e) {
         if (!startOverlay.classList.contains('hide')) {
             bgMusic.play().catch(() => {});
